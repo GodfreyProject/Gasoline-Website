@@ -1,0 +1,154 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.Business_WearsModel
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="" />
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .search-container {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 60%;
+            border: none;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-term {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .cart-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+            padding: 20px;
+        }
+
+        .cart-item {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .add-to-cart-button:hover {
+                background-color: #2980b9;
+            }
+
+        button,
+        a.add-to-cart-button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none; /* Remove default underline for anchor tags */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search-container">
+        <form method="get">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search products">
+            <button type="submit">Search</button>
+        </form>
+
+    </div>
+    <div class="search-term">
+        <p><strong>Search Term:</strong> <span id="searchTermDisplay">All Products</span></p>
+    </div>
+    <div class="cart-items">
+
+        @*@if (Model.SearchResults != null && Model.SearchResults.Any())
+            {*@
+        @foreach (var product in Model.GetProducts)
+        {
+            @if (product.FabricType == "Silk Blend")
+            {
+                <div class="cart-item">
+                    @*<h3>@product.ID</h3>*@
+
+
+                    <img class="product-image" src="data:images/png;base64,@Convert.ToBase64String(product.ImagePath)" alt="Product Image">
+
+                    @*}*@
+                    <h2>@product.ProductName</h2>
+
+                    <p><strong>Fabric Type:</strong> @(product.FabricType.ToString() ?? "N/A")</p>
+                    <p><strong>Quality and Durability:</strong> @(product.QualityAndDurability.ToString() ?? "N/A")</p>
+                    <p><strong>Comfort:</strong> @product.Comfort</p>
+                    <p><strong>Colour and Pattern:</strong> @product.ColourAndPattern</p>
+                    <p><strong>Quantity:</strong> @product.Quantity</p>
+                    <p><strong>Price:</strong> @product.Price</p>
+                    <p><strong>Sustainability:</strong> @product.Sustainability</p>
+                    <p><strong>Maintenance and Care:</strong> @product.MaintenanceAndCare</p>
+                    <p><strong>Origin and Manufacturing Process:</strong> @product.OriginAndManufacturingProcess</p>
+                    <p><strong>Hypoallergenic Properties:</strong> @product.HypoallergenicProperties</p>
+                    <p><strong>Versatility:</strong> @product.Versatility</p>
+                    <p><strong>Reviews and Recommendations:</strong> @product.ReviewsAndRecommendations</p>
+                    <p><strong>Brand Reputation:</strong> @product.BrandReputation</p>
+                    <p><strong>Return and Exchange Policies:</strong> @product.ReturnAndExchangePolicies</p>
+                    <p><strong>Certifications and Labels:</strong> @product.CertificationsAndLabels</p>
+                    <p><strong>Availability:</strong> @product.Availability</p>
+                    @*<a <button href="About"class="add-to-cart-button">Add to Cart</button></a>*@
+                    <a href="Login" class="add-to-cart-button">Add to Cart</a>
+                </div>
+            }
+
+        }
+        @*}*@
+        @*else
+            {
+                <p>No results found.</p>
+            }*@
+
+    </div>
+</body>
+</html>

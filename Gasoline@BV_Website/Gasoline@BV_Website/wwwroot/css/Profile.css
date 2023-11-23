@@ -1,0 +1,278 @@
+﻿@import url('https://fonts.goog/*/*/*leapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+/*
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 470px;
+    width: 100%;
+    background: #fff;
+    border-radius: 44px;
+    padding: 35px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+    .profile-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 36%;
+        width: 100%;
+        border-radius: 24px 24px 0 0;
+        background-color: #4070f4;
+    }
+
+.image {
+    position: relative;
+    height: 150px;
+    width: 250px;
+    border-radius: 70%;
+    background-color: #4070f4;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+    .image .profile-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border: 3px solid #fff;
+    }
+
+.profile-card .text-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+}
+
+.text-data .name {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.text-data .job {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.text-data .degree {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+.text-data .user {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.profile-card .media-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.media-buttons .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    margin: 0 8px;
+    background-color: #4070f4;
+    text-decoration: none;
+}
+
+.profile-card .buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.buttons .button {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    border-radius: 24px;
+    margin: 0 10px;
+    padding: 8px 24px;
+    background-color: #4070f4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .buttons .button:hover {
+        background-color: #0e4bf1;
+    }
+
+.profile-card .analytics {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.analytics .data {
+    display: flex;
+    align-items: center;
+    color: #333;
+    padding: 0 20px;
+    border-right: 2px solid #e7e7e7;
+}
+
+.data i {
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.data:last-child {
+    border-right: none;
+}*/
+
+*/*/
+
+/* Profile.css /*
+
+p*/rofile-card {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.image img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.text-data {
+    margin: 20px 0;
+}
+
+.media-buttons {
+    margin: 20px 0;
+}
+
+.buttons {
+    margin: 20px 0;
+}
+
+.analytics {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* Profile.css */
+.profile-card {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.image img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.text-data {
+    margin: 20px 0;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.job, .degree, .user {
+    font-size: 16px;
+    color: #666;
+}
+
+.media-buttons {
+    margin: 20px 0;
+}
+
+.link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+}
+
+.buttons {
+    margin: 20px 0;
+}
+
+.button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.analytics {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+}
+
+    .data i {
+        font-size: 24px;
+        color: #333;
+        margin-right: 5px;
+    }
+
+.number {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .profile-card {
+        width: 100%;
+    }
+}

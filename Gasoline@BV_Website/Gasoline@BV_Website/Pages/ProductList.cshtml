@@ -1,0 +1,173 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.ProductListModel
+@{
+    Layout = "WareHouse_Layout";
+    ViewData["Title"] = "ProductList";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #searchInput {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        #productContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .addToCartBtn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .search-btn {
+            cursor: pointer;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            width: 50px;
+            outline: none;
+            padding: 9px;
+            border: 2px solid #053b50;
+            color: #fff;
+            background-color: #176b87;
+        }
+        .product-image {
+            max-width: 300px; /* Adjust as needed */
+            max-height: 200px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Product List</h1>
+
+    <!-- Search Input -->
+    <form>
+        <input type="text" id="searchInput" placeholder="Search by Brand" oninput="searchProducts()">
+        <button class="search-btn" type="submit">
+            <i class="fas fa-search">Search</i>
+        </button>
+
+    </form>
+    <!-- Product List -->
+    <div id="productContainer">
+        @if (Model.GetProducts != null)
+        {
+            @foreach (var product in Model.GetProducts)
+            {
+                <div class="product">
+                    <div class="product-image">
+                        <img class="product-image" src="data:images/png;base64,@Convert.ToBase64String(product.ImagePath)" alt="Product Image">
+                    </div>
+                    <h2>Brand:@product.ProductName</h2>
+                    <p>Model: @product.ID</p>
+                    <p>Price: $@product.Price</p>
+                    <p>Fabric-Type: @product.FabricType</p>
+                    <p>Quality&Durability: @product.QualityAndDurability</p>
+                    <p>Comfort: @product.Comfort</p>
+                    <p>Colour&Pattern: @product.ColourAndPattern</p>
+                    <p>Qauntity: @product.Quantity</p>
+                    <p>Sustainability: @product.Sustainability</p>
+                    <p>Maintenace&Care: @product.MaintenanceAndCare</p>
+                    <p>Origin&Manufacture: @product.OriginAndManufacturingProcess</p>
+                    <p>HypoAllergic: @product.HypoallergenicProperties</p>
+                    <!-- Add other product details here -->
+                    <button class="addToCartBtn" onclick="addToCart(@product.ID)">Add to Cart</button>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No products found.</p>
+        }
+    </div>
+
+    <script>
+        //function searchProducts() {
+        //    var input, filter, productList, products, i, brand;
+        //    input = document.getElementById("searchInput");
+        //    filter = input.value.toUpperCase();
+        //    productList = document.getElementById("productContainer");
+        //    products = productList.getElementsByClassName("product");
+
+        //    for (i = 0; i < products.length; i++) {
+        //        brand = products[i].getElementsByTagName("h2")[0].innerText.toUpperCase();
+        //        if (brand.indexOf(filter) > -1) {
+        //            products[i].style.display = "";
+        //        } else {
+        //            products[i].style.display = "none";
+        //        }
+        //    }
+        //}
+        function searchProducts() {
+            var input, filter, productList, products, i, productText;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            productList = document.getElementById("productContainer");
+            products = productList.getElementsByClassName("product");
+
+            for (i = 0; i < products.length; i++) {
+                productText = products[i].innerText.toUpperCase();
+
+                if (productText.indexOf(filter) > -1) {
+                    products[i].style.display = "";
+                } else {
+                    products[i].style.display = "none";
+                }
+            }
+        }
+
+
+
+
+        function addToCart(productId) {
+            // Implement your add to cart logic here
+            alert("Product added to cart. Product ID: " + productId);
+        }
+            //function searchProducts() {
+            //    var input, filter, productList, products, i, brand;
+            //    input = document.getElementById("searchInput");
+            //    filter = input.value.toUpperCase();
+            //    productList = document.getElementById("productList");
+            //    products = productList.getElementsByClassName("product");
+
+            //    for (i = 0; i < products.length; i++) {
+            //        brand = products[i].getElementsByTagName("h2")[0].innerText.toUpperCase();
+            //        if (brand.indexOf(filter) > -1) {
+            //            products[i].style.display = "";
+            //        } else {
+            //            products[i].style.display = "none";
+            //        }
+            //    }
+            //}
+
+            //function addToCart(productId) {
+            //    // Implement your add to cart logic here
+            //    alert("Product added to cart. Product ID: " + productId);
+            //}
+    </script>
+
+</body>
+</html>
+
+

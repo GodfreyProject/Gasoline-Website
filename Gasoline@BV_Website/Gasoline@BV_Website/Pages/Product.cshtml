@@ -1,0 +1,128 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.ProductModel
+@{
+    Layout = "Admin_Layout";
+    ViewData["Title"] = "Product";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-form {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+
+<body>
+    <form class="product-form"  method="post" enctype="multipart/form-data">
+        <div class="form-title">Add Product</div>
+
+        <label asp-for="FoundProduct.ProductName">Product Name:</label>
+        <input type="text" id="productName" asp-for="FoundProduct.ProductName">
+
+        <label asp-for="FoundProduct.FabricType">Fabric Type:</label>
+        <input type="text" id="fabricType" asp-for="FoundProduct.FabricType">
+
+        <label asp-for="FoundProduct.QualityAndDurability">Quality and Durability:</label>
+        <input type="text" id="qualityAndDurability" asp-for="FoundProduct.QualityAndDurability">
+
+        <label asp-for="FoundProduct.Comfort">Comfort:</label>
+        <input type="text" id="comfort" asp-for="FoundProduct.Comfort">
+
+        <label asp-for="FoundProduct.ColourAndPattern">Colour and Pattern:</label>
+        <input type="text" id="colourAndPattern" asp-for="FoundProduct.ColourAndPattern">
+
+        <label asp-for="FoundProduct.Quantity">Quantity:</label>
+        <input type="number" id="quantity" asp-for="FoundProduct.Quantity">
+
+        <label asp-for="FoundProduct.CostPrice">Cost Price:</label>
+        <input type="text" id="costPrice" asp-for="FoundProduct.CostPrice">
+
+        <label asp-for="FoundProduct.Price">Price:</label>
+        <input type="text" id="price" asp-for="FoundProduct.Price">
+
+        <label asp-for="FoundProduct.Sustainability">Sustainability:</label>
+        <input type="text" id="sustainability" asp-for="FoundProduct.Sustainability">
+
+        <label asp-for="FoundProduct.MaintenanceAndCare">Maintenance and Care:</label>
+        <input type="text" id="maintenanceAndCare" asp-for="FoundProduct.MaintenanceAndCare">
+
+        <label asp-for="FoundProduct.OriginAndManufacturingProcess">Origin and Manufacturing Process:</label>
+        <input type="text" id="originAndManufacturingProcess" asp-for="FoundProduct.OriginAndManufacturingProcess">
+
+        <label asp-for="FoundProduct.HypoallergenicProperties">Hypoallergenic Properties:</label>
+        <input type="text" id="hypoallergenicProperties" asp-for="FoundProduct.HypoallergenicProperties">
+
+        <label asp-for="FoundProduct.Versatility">Versatility:</label>
+        <input type="text" id="versatility" asp-for="FoundProduct.Versatility">
+
+        <label asp-for="FoundProduct.ReviewsAndRecommendations">Reviews and Recommendations:</label>
+        <textarea id="reviewsAndRecommendations" asp-for="FoundProduct.ReviewsAndRecommendations" rows="4" cols="50"></textarea>
+
+        <label asp-for="FoundProduct.BrandReputation">Brand Reputation:</label>
+        <input type="text" id="brandReputation" asp-for="FoundProduct.BrandReputation">
+
+        <label asp-for="FoundProduct.ReturnAndExchangePolicies">Return and Exchange Policies:</label>
+        <textarea id="returnAndExchangePolicies" asp-for="FoundProduct.ReturnAndExchangePolicies" rows="4" cols="50"></textarea>
+
+        <label asp-for="FoundProduct.CertificationsAndLabels">Certifications and Labels:</label>
+        <input type="text" id="certificationsAndLabels" asp-for="FoundProduct.CertificationsAndLabels">
+
+        <label asp-for="FoundProduct.Availability">Availability:</label>
+        <input type="text" id="availability" asp-for="FoundProduct.Availability">
+
+        <label asp-for="UploadImage">Image:</label>
+        <input type="file" id="image" asp-for="UploadImage">
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

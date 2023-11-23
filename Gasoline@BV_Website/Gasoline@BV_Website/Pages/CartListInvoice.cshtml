@@ -1,0 +1,284 @@
+﻿@page
+@model Test_ShoppingCart.Pages.CartListInvoiceModel
+@{
+    Layout = "Consumer_Layout";
+    ViewData["Title"] = "CartListInvoice";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Invoice.css">
+    <title>Document</title>
+    <div class="invoice-header responsive-invoice-header">
+        <style>
+        /* Add the rest of the CSS here */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .invoice-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .inv-number,
+        .inv-date {
+            text-align: right;
+        }
+
+        .billing-detail {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .total-section {
+            margin-top: 20px;
+        }
+
+        .sub,
+        .tax,
+        .total {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .payment-terms {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .payment-detail,
+        .terms,
+        .message {
+            flex-basis: 100%;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .border-design {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 10px;
+            margin-top: 20px;
+        }
+
+        .c1,
+        .c2,
+        .c3,
+        .c4,
+        .c5 {
+            flex: 1;
+            height: 100%;
+            background-color: black;
+        }
+
+        @*/* Media Queries for responsiveness */
+        @media only screen and (max-width: 600px) {
+            .invoice-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .inv-number,
+            .inv-date {
+                text-align: left;
+            }
+
+            .billing-detail {
+                margin-bottom: 10px;
+            }
+
+            .payment-terms {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .payment-detail,
+            .terms,
+            .message {
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+        }*@
+        </style>
+        </div>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="border-design top">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+            <div class="c5"></div>
+        </div>
+
+        <div class="invoice-header">
+            <div class="logo">Gasoline<span>BV</span></div>
+            <div class="title">Invoice</div>
+            <div class="inv-number">
+                <h3>Invoice #</h3>
+                <h4>36254</h4>
+            </div>
+            <div class="inv-date">
+                @foreach (var check in Model.GetCheckouts)
+                {
+                    if (check.UserId == Model.customer.UserID)
+                    {
+                    <h3>Date</h3><h4>@check.OrderDate</h4>
+                }
+                else
+                {
+                    <p>@ViewData[""]</p>
+                }
+                }
+            </div>
+        </div>
+
+        <div class="billing-detail">
+            <p>Billing to</p>
+            <p>Gasoline@BV</p>
+            <p><span>Contact:</span>+31675345277</p>
+            <p><span>Email:</span>@Model.customer.Email</p>
+            <p><span>Zipcode:</span>@Model.customer.Zipcode</p>
+            @foreach (var check in Model.GetCheckouts)
+            {
+                if (check.UserId == Model.customer.UserID)
+                {
+                    <p><span>Address:</span>@check.Address</p>
+                    <p><span>AccountNr:</span>@check.AccountNr</p>
+                    <p><span>Bank-Name:</span>@check.BankNames</p>
+                }
+                else
+                {
+                    <p>@ViewData[""]</p>
+                }
+            }
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Item Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add your foreach loop here for rendering cart items -->
+                 @*Example:*@
+                @foreach (var cartItem in Model.CartItems)
+                {
+                    if (cartItem.UserID == Model.customer.UserID)
+                    {
+                    <tr>
+                        <td>@cartItem.CartId</td>
+                        <td>@cartItem.Name</td>
+                        <td>@cartItem.OrderQuantity</td>
+                        <td>@cartItem.OrderPrice</td>
+                        <td><img src="data:image;base64,@Convert.ToBase64String(cartItem.ImageProd)" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>
+                        <td>@cartItem.TotalCost</td>
+                    </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <div class="sub">
+                <p>Sub Total:</p>
+                <!-- Add your sub total value here -->
+            </div>
+            <div class="tax">
+                <p>Tax:</p>
+                <p>€0.00</p>
+            </div>
+            <!-- Add your foreach loop here for rendering checkouts -->
+             @*Example:*@
+            @foreach (var check in Model.GetCheckouts)
+            {
+                if (check.UserId == Model.customer.UserID)
+                {
+                <div class="total">
+                    <p>Grand Total:</p>
+                    <p>€@check.GrandTotal</p>
+                </div>
+                }
+            }
+
+        </div>
+
+        <div class="payment-terms">
+            <div class="payment-detail">
+                <p>Payment Info</p>
+                <!-- Add your payment details here -->
+            </div>
+
+            <div class="terms">
+                <p>Terms & Condition</p>
+                <p>Thank you very much for buying our product.</p>
+            </div>
+            <div class="message">
+                <p>Thank You for Your Business</p>
+            </div>
+        </div>
+        <div class="signature">
+            <p>Authorized Signature</p>
+        </div>
+        <div class="border-design bottom">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+            <div class="c5"></div>
+        </div>
+    </div>
+</body>
+</html>
+

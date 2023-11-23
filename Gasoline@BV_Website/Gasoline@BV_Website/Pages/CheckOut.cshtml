@@ -1,0 +1,185 @@
+﻿
+@page
+@model Test_ShoppingCart.Pages.CheckOutModel
+@{
+    Layout = "Consumer_Layout";
+    ViewData["Title"] = "CheckOut";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add your custom styles here */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .checkout-form {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+            .cart-item img {
+                max-width: 80px;
+                max-height: 80px;
+                margin-right: 20px;
+            }
+
+            .cart-item p {
+                margin: 5px 0;
+            }
+
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+    <title>Checkout Your Item</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Cart Items</h2>
+        @foreach (var cartItem in Model.CartItems)
+        {
+            if (cartItem.UserID == Model.customer.UserID)
+            {
+                <div class="cart-item">
+                    <img src="data:image;base64,@Convert.ToBase64String(cartItem.ImageProd)" />
+                    <div>
+                        <p>Order Quantity: <span class="quantity" data-quantity="@cartItem.OrderQuantity">@cartItem.OrderQuantity</span></p>
+                        <p class="price" data-price="@cartItem.OrderPrice">Price: @cartItem.OrderPrice</p>
+                        <p class="">ProductName: @cartItem.Name</p>
+                        <p>Total Cost: @((decimal)cartItem.OrderPrice * cartItem.OrderQuantity)</p>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h4></h4>
+            }
+        }
+    </div>
+
+    <div class="checkout-form">
+        <h2>Checkout Form</h2>
+        <form method="post">
+
+            <input type="text" id="fullName" asp-for="customer.FullName" placeholder="Full Name" required>
+            <input type="text" id="UserId" asp-for="customer.UserID" placeholder="UserID" required>
+            <input type="text" id="address" asp-for="checkout.Address" placeholder="Address" required>
+            <input type="text" id="zipcode" asp-for="customer.Zipcode" placeholder="Zip Code" required>
+            <input type="text" id="accountNr" asp-for="checkout.AccountNr" placeholder="Account Number" required>
+            <input type="text" id="bankNames" asp-for="checkout.BankNames" placeholder="Bank Name" required>
+            <input type="date" id="birthdate" asp-for="checkout.OrderDate"><br><br>
+            <input type="text" id="grandTotal" asp-for="checkout.GrandTotal" value="0">
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantities = document.querySelectorAll('.quantity');
+            const prices = document.querySelectorAll('.price');
+            let grandTotal = 0;
+
+            // Calculate the initial grand total
+            for (let i = 0; i < quantities.length; i++) {
+                const priceVal = parseFloat(prices[i].dataset.price.replace(',', '.'));
+                const quantityVal = parseInt(quantities[i].dataset.quantity);
+                grandTotal += priceVal * quantityVal;
+            }
+            document.getElementById('grandTotal').value = grandTotal.toFixed(2); // Format to 2 decimal places
+
+            // Update total on quantity change
+            quantities.forEach((quantity, i) => {
+                quantity.addEventListener('change', function () {
+                    let subTotal = 0;
+                    for (let j = 0; j < quantities.length; j++) {
+                        const priceVal = parseFloat(prices[j].dataset.price.replace(',', '.'));
+                        const quantityVal = parseInt(quantities[j].dataset.quantity);
+                        subTotal += priceVal * quantityVal;
+                    }
+                    document.getElementById('grandTotal').value = subTotal.toFixed(2); // Format to 2 decimal places
+                });
+            });
+        });
+        //document.addEventListener('DOMContentLoaded', function () {
+        //    const quantities = document.querySelectorAll('.quantity');
+        //    const prices = document.querySelectorAll('.price');
+        //    let grandTotal = 0;
+
+        //    // Calculate the initial grand total
+        //    for (let i = 0; i < quantities.length; i++) {
+        //        const priceVal = parseFloat(prices[i].dataset.price.replace(',', '.'));
+        //        const quantityVal = parseInt(quantities[i].dataset.quantity);
+        //        grandTotal += priceVal * quantityVal;
+        //    }
+        //    document.getElementById('grandTotal').value = grandTotal;
+
+        //    // Update total on quantity change
+        //    quantities.forEach((quantity, i) => {
+        //        quantity.addEventListener('change', function () {
+        //            let subTotal = 0;
+        //            for (let j = 0; j < quantities.length; j++) {
+        //                const priceVal = parseFloat(prices[j].dataset.price.replace(',', '.'));
+        //                const quantityVal = parseInt(quantities[j].dataset.quantity);
+        //                subTotal += priceVal * quantityVal;
+        //            }
+        //            document.getElementById('grandTotal').value = subTotal;
+        //        });
+        //    });
+        //});
+    </script>
+
+</body>
+
+</html>

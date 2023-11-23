@@ -1,0 +1,36 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.RetailerProfileModel
+@{
+    Layout = "Retailer_Layout";
+    ViewData["Title"] = "RetailerProfile";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>User Profile</title>
+</head>
+
+<body>
+    <div class="profile-container">
+        <div class="profile-image">
+            <img class="profile-img" src="data:image/png;base64,@Convert.ToBase64String(Model.retailer.Photo)" alt="Image">
+        </div>
+        <div class="profile-details">
+            <h2>Full Name</h2>
+            <p>Username: @Model.retailer.FullName</p>
+            <p>Email: @Model.retailer.UserName</p>
+            <p>Password: @Model.retailer.Email</p>
+            <p>Password: @Model.retailer.Role</p>
+            <p>Password: @Model.retailer.UserID</p>
+            <button onclick="updateProfile()">Update</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/js/app.js"></script>

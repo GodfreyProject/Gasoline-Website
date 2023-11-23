@@ -1,0 +1,125 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.ProductionListModel
+@{
+    Layout = "Production_Layout";
+    ViewData["Title"] = "ProductionList";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .manufacturers-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+
+            .manufacturers-table th, .manufacturers-table td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 12px;
+            }
+
+            .manufacturers-table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .manufacturers-table th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: auto;
+        }
+
+            .action-button.view {
+                background-color: green;
+            }
+
+            .action-button.edit {
+                background-color: orange;
+            }
+
+            .action-button.update {
+                background-color: blue;
+            }
+
+            .action-button:hover {
+                opacity: 0.8;
+            }
+
+            .action-button:active {
+                opacity: 0.6;
+            }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <table class="manufacturers-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Productionpart</th>
+                    <th>ProductionUnit</th>
+                    <th>Bachnr</th>
+                    <th>Stepnr</th>
+                    <th>Productionsteps</th>
+                    <th>Start</th>
+                    <th>Finish</th>
+                    <th>Material</th>
+                    <th>Quantity</th>
+                    <th>Scrap</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var list in Model.GetFacturers)
+                {
+                    <tr>
+                        <td>@list.Nr</td>
+                        <td>@list.Productionpart</td>
+                        <td>@list.ProductionUnit</td>
+                        <td>@list.Batchnr</td>
+                        <td>@list.Stepnr</td>
+                        <td>@list.Productionsteps</td>
+                        <td>@list.start</td>
+                        <td>@list.finish</td>
+                        <td>@list.material</td>
+                        <td>@list.quantity</td>
+                        <td>@list.scrap</td>
+                        <td class="action-buttons">
+                            <button class="action-button view">View</button>
+                            <button class="action-button edit">Edit</button>
+                            <button class="action-button update">Update</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

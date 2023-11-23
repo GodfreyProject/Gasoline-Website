@@ -1,0 +1,58 @@
+﻿@page
+@model Gasoline_BV_Website.Pages.AdminProfileModel
+@{
+    Layout = "Admin_Layout";
+    ViewData["Title"] = "AdminProfile";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/adminProfile.css">
+</head>
+
+<body>
+    <div class="profile-container">
+        <h2>Admin Profile</h2>
+        <form id="adminProfileForm">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="userName">User Name</label>
+            <input type="text" id="userName" name="userName" required>
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="role">Role</label>
+            <input type="text" id="role" name="role" required>
+
+            <label for="zipcode">Zipcode</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+
+            <label for="image">Upload Image</label>
+
+            <div class="profile-image">
+                <img class="profile-img" src="~/images/cat3.jpg" alt="Image">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("adminProfileForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const profileData = {};
+            for (var pair of formData.entries()) {
+                profileData[pair[0]] = pair[1];
+            }
+            console.log(profileData);
+            // You can perform additional actions here, such as sending the data to a server
+        });
+    </script>
+</body>
+
+</html>
+

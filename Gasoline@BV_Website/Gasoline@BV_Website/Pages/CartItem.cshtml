@@ -1,0 +1,292 @@
+﻿@page
+@model Test_ShoppingCart.Pages.CartItemModel
+@{
+    Layout = "Consumer_Layout";
+    ViewData["Title"] = "CartItem";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/shop.css">
+
+    <style>
+        .head {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .cart {
+            display: block;
+            text-align: right;
+            margin-left: auto;
+            margin-right: 10px; /* Adjust the margin as per your preference */
+            background-color: #4CAF50; /* Set your preferred background color */
+            color: white;
+            padding: 10px 20px; /* Adjust the padding as per your preference */
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px; /* Adjust the border radius as per your preference */
+            transition: background-color 0.3s;
+        }
+
+            .cart:hover {
+                background-color: #45a049; /* Set your preferred background color for hover */
+            }
+
+            .cart img {
+                width: 30px; /* Adjust the width as per your preference */
+                height: 30px; /* Adjust the height as per your preference */
+                /* Add any other styling you want for the image here */
+                margin-right: 5px; /* Adjust the margin as per your preference */
+            }
+
+        /*div {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }*/
+    </style>
+</head>
+<body>
+
+
+
+    <h2 class="head">
+        <a href="CartItem" class="cart"><i class="fa-solid fa-cart-shopping"></i><span><sup><img src="~/images/cart.png" />ItemsCount:@Model.rowCount</sup></span></a>
+        <a href="#" class="cart" id="cartIcon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartItemCountSpan"> CartItemCounts:@Model.rowCount</span>
+            @*Call the GetProductRowCount function to display the row count*@
+        </a>
+    </h2>
+   <div>
+       <form method="get">
+           <input type="text" asp-for="SearchItems" placeholder="Product ID" />
+           <input type="text" asp-for="ProductID" placeholder="Product ID" />
+           <input type="text" asp-for="ProductName" placeholder="Product Name" />
+           <input type="text" asp-for="Quantity" placeholder="Quantity" />
+           <input type="text" asp-for="Price" placeholder="Price" />
+           <input type="submit" value="Submit" />
+       </form>
+    </div>
+    <div class="container">
+        <section class="shopping_cart">
+            <h1 class="heading">My Cart:</h1>
+
+            @*@if (Model.CartItems != null && Model.customer != null && Model.GetCart != null)
+                {
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Car ID</th>
+                                <th>Product ID</th>
+                                <th>USER ID</th>
+                                <th>Product Name</th>
+                                <th>Image</th>
+                                <th>Order Quantity</th>
+                                <th>Price</th>
+                                <th>Total Cost</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cartItem in Model.CartItems)
+                            {
+                                if (cartItem.UserID == Model.customer.UserID)
+                                {
+                                    <tr>
+                                        <td>@cartItem.CartId</td>
+                                        <td>@cartItem.ProductID</td>
+                                        <td>@cartItem.UserID</td>
+                                        <td>@cartItem.Name</td>
+                                        <td><img src="data:image;base64,@Convert.ToBase64String(cartItem.ImageProd)" /></td>
+                                        <td>
+                                            <form method="post">
+                                                <input type="hidden" asp-for="GetCart.CartId" value="@cartItem.CartId" />
+                                                <div class="quantity_box">
+                                                    <input type="number" value="@cartItem.OrderQuantity" min="1" asp-for="GetCart.OrderQuantity" />
+                                                    <input type="submit" class="update_quantity" value="update" />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="price" data-price="@cartItem.OrderPrice">@cartItem.OrderPrice</td>
+                                        <td class="cost">@cartItem.TotalCost</td>
+                                        <td>
+                                            <a asp-page="OnDeleteCartItem" asp-route-ID="@cartItem.CartId">
+                                                <i class="fas fa-trash">Remove</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <p><span>Something Went Wrong</span></p>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h2><span>Cart is empty.</span></h2>
+                }*@
+            <table style="width:100%">
+                <thead>
+                <th>Car ID</th>
+                <th>Product ID</th>
+                <th>USER ID</th>
+                <th>Product Name</th>
+                <th>Image</th>
+                <th>Order Quantity</th>
+
+                <th>Price</th>
+                <th>Total Cost</th>
+                <th>Action</th>
+                </thead>
+
+
+                @foreach (var cartItem in Model.CartItems)
+                {
+                    @if (cartItem.UserID == Model.customer.UserID)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@cartItem.CartId</td>
+                                <td>@cartItem.ProductID</td>
+                                <td>@cartItem.UserID</td>
+
+                                <td>@cartItem.Name</td>
+                                <td><img src="data:image;base64,@Convert.ToBase64String(cartItem.ImageProd)" /></td>
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" asp-for="GetCart.CartId" value="@cartItem.CartId" />
+                                        <input type="hidden" asp-for="GetCart.ProductID" value="@cartItem.ProductID" />
+                                        <div class="quantity_box">
+                                            <input type="number" value="@cartItem.OrderQuantity" min="1" asp-for="GetCart.OrderQuantity" />
+                                            <input type="submit" class="update_quantity" value="update" />
+                                        </div>
+                                    </form>
+                                </td>
+
+                                <td class="price" data-price="@cartItem.OrderPrice">@cartItem.OrderPrice</td>
+                                <td class="cost">@cartItem.TotalCost</td>
+                                <td>
+                                    <a asp-page="OnDeleteCartItem" asp-route-ID="@cartItem.CartId">
+                                        <i class="fas fa-trash">Remove</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+
+                    {
+                        <p>@ViewData["message"]</p>
+                    }
+                }
+
+            </table>
+            <div class="table_bottom">
+                <a href="OrderCartItem" class="bottom_btn">Contiue Shopping</a>
+
+                <a href="CheckOut"> <h3 class="bottom_btn">Grand TotalAmount: <span id="grandTotal">0</span></h3></a>
+
+                <a href="CheckOut" class="bottom_btn">Proceed to Checkout</a>
+
+            </div>
+            <a href="" class="delete_all_btn">
+                <i class="fas fa-trash">Delete All</i>
+            </a>
+        </section>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantities = document.querySelectorAll('input[name="OrderQuantity"]');
+            const totalCosts = document.querySelectorAll('.cost');
+            let grandTotal = 0;
+
+            for (let i = 0; i < quantities.length; i++) {
+                quantities[i].addEventListener('change', function () {
+                    const price = parseFloat(this.parentElement.parentElement.querySelector('.price').dataset.price);
+                    const quantity = parseInt(this.value);
+                    const cost = price * quantity;
+                    totalCosts[i].textContent = cost;
+                    calculateGrandTotal();
+                });
+            }
+
+            function calculateGrandTotal() {
+                grandTotal = 0;
+                totalCosts.forEach(function (element) {
+                    grandTotal += parseFloat(element.textContent);
+                });
+                document.getElementById('grandTotal').textContent = grandTotal;
+            }
+
+            calculateGrandTotal();
+        });
+
+        //document.addEventListener('DOMContentLoaded', function () {
+        //    const quantities = document.querySelectorAll('input[name="OrderQuantity"]');
+        //    const totalCosts = document.querySelectorAll('.cost');
+        //    let grandTotal = 0;
+
+        //    for (let i = 0; i < quantities.length; i++) {
+        //        quantities[i].addEventListener('change', function () {
+        //            const price = parseFloat(this.parentElement.nextElementSibling.textContent);
+        //            const quantity = parseInt(this.value);
+        //            const cost = price * quantity;
+        //            totalCosts[i].textContent = cost;
+        //            calculateGrandTotal();
+        //        });
+        //    }
+
+        //    function calculateGrandTotal() {
+        //        grandTotal = 0;
+        //        for (let i = 0; i < totalCosts.length; i++) {
+        //            grandTotal += parseFloat(totalCosts[i].textContent);
+        //        }
+        //        document.getElementById('grandTotal').textContent = grandTotal;
+        //    }
+
+        //    calculateGrandTotal();
+        //});
+    </script>
+</body>
+ </html>
+    

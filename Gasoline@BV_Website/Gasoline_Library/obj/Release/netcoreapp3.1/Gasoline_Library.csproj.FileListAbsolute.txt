@@ -1,0 +1,9 @@
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\bin\Release\netcoreapp3.1\Gasoline_Library.deps.json
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\bin\Release\netcoreapp3.1\Gasoline_Library.dll
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\bin\Release\netcoreapp3.1\Gasoline_Library.pdb
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.csproj.AssemblyReference.cache
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.AssemblyInfoInputs.cache
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.AssemblyInfo.cs
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.csproj.CoreCompileInputs.cache
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.dll
+C:\Users\vera2\source\repos\Gasoline@BV_Website\Gasoline_Library\obj\Release\netcoreapp3.1\Gasoline_Library.pdb
